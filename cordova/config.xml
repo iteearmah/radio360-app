@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.radio360.app" version="0.1.0">
+  <name>Radio360</name>
+  <description>
+    Radio360 App 
+  </description>
+  <author email="iteearmah@gmail.com">
+    Samuel Armah
+  </author>
+  <content src="package.json" />
+  <platform name="android">
+        <icon src="logo.png" />
+    </platform>
+     <plugin name="cordova-plugin-dialogs" />
+    <plugin name="cordova-plugin-inappbrowser" />
+    <plugin name="cordova-plugin-network-information" />
+    <plugin name="de.appplant.cordova.plugin.badge" />
+    <plugin name="https://github.com/admob-google/admob-cordova.git" />
+    <plugin name="https://github.com/nchutchind/cordova-plugin-streaming-media.git" />
+    <plugin name="https://github.com/katzer/cordova-plugin-background-mode.git" />
+    <plugin name="https://github.com/apache/cordova-plugin-splashscreen.git" />
+    <plugin name="https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
+    <plugin name="https://github.com/Glitchbone/CordovaYoutubeVideoPlayer.git" />
+</widget>
