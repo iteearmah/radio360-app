@@ -12,19 +12,20 @@
         <icon src="logo.png" />
       <splash src="splashscreen.png" />
     </platform>
-     <plugin name="cordova-plugin-dialogs" />
+
+     <hook type="before_build" src="before_build.js" />
+    <plugin name="cordova-plugin-dialogs" />
     <plugin name="cordova-plugin-inappbrowser" />
     <plugin name="cordova-plugin-network-information" />
     <plugin name="de.appplant.cordova.plugin.badge" />
+    <plugin name="cordova-plugin-firebase" />
     <plugin name="https://github.com/admob-google/admob-cordova.git" />
     <plugin name="https://github.com/nchutchind/cordova-plugin-streaming-media.git" />
     <plugin name="https://github.com/katzer/cordova-plugin-background-mode.git" />
     <plugin name="https://github.com/apache/cordova-plugin-splashscreen.git" />
     <plugin name="https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
     <plugin name="https://github.com/Glitchbone/CordovaYoutubeVideoPlayer.git" />
-    <plugin name="https://github.com/fechanique/cordova-plugin-fcm.git" />
-    <platform name="android">
-  <splash src="splashscreen.png" />
-</platform>
 
+<access origin="*" />
+  <allow-intent href="http://*/*" />
 </widget>
