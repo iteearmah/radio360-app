@@ -69,7 +69,7 @@ exports.fetch_other_newslist= function(view,json_url,key)
 {
   utils.getJSON(json_url).then(function (json) {
         localStorage.setItem(key,JSON.stringify(json));
-         view.insert(data.items);
+         view.insert(json.items);
     });
 }
 

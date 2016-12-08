@@ -259,7 +259,7 @@ tabFolder.on("select", function (widget, tab) {
 
 
   }, 20000);*/
-  //createItems(true,pageUrl('news'),IMAGE_SIZE, MARGIN,newsTab,newsDetails,shareAction,'news_list');
+createItems(true,pageUrl('news'),IMAGE_SIZE, MARGIN,newsTab,newsDetails,shareAction,'news_list');
 createItems(false,pageUrl('politics'),IMAGE_SIZE, MARGIN,politicsTab,newsDetails,shareAction,'politics_list');
 createItems(false,pageUrl('sports'),IMAGE_SIZE, MARGIN,sportsTab,newsDetails,shareAction,'sports_list');
 createItems(false,pageUrl('business'),IMAGE_SIZE, MARGIN,businessTab,newsDetails,shareAction,'business_list');

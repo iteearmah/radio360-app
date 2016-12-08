@@ -1,3 +1,4 @@
+var utils = require('./utils.js');
 exports.news_readPage=function(newsItem,shareAction)
 {
 	var MARGIN_SMALL = 14;
@@ -141,8 +142,10 @@ function fetch_newsDetails(newsItem,newsArticle,activityIndicator,contentComposi
 {
 	activityIndicator.set("visible", true);
 	var article='';
+	var json_url='http://www.myradio360.com/api/article/'+newsItem.id;
    utils.getJSON(json_url).then(function (json) {
-       
+   	//console.log(json);
+       var data=json;
          if(newsItem.category=='videos')
          {
          	media=testUrlForMedia(data.article);

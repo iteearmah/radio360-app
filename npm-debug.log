@@ -1,0 +1,67 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'install' ]
+2 info using npm@3.5.2
+3 info using node@v4.2.6
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly install normalizeTree
+8 silly loadCurrentTree Finishing
+9 silly loadIdealTree Starting
+10 silly install loadIdealTree
+11 silly cloneCurrentTree Starting
+12 silly install cloneCurrentTreeToIdealTree
+13 silly cloneCurrentTree Finishing
+14 silly loadShrinkwrap Starting
+15 silly install loadShrinkwrap
+16 silly loadShrinkwrap Finishing
+17 silly loadAllDepsIntoIdealTree Starting
+18 silly install loadAllDepsIntoIdealTree
+19 silly fetchNamedPackageData tabris
+20 silly mapToRegistry name tabris
+21 silly mapToRegistry using default registry
+22 silly mapToRegistry registry https://registry.npmjs.org/
+23 silly mapToRegistry uri https://registry.npmjs.org/tabris
+24 verbose get https://registry.npmjs.org/tabris not expired, no request
+25 silly fetchPackageMetaData Error: No compatible version found: tabris@nightly
+25 silly fetchPackageMetaData Valid install targets:
+25 silly fetchPackageMetaData 1.10.0, 1.9.0, 1.8.0, 1.7.0, 1.6.0, 1.5.0, 1.4.0, 1.3.0, 1.2.0, 1.1.0, 1.0.0, 0.9.4, 0.9.3, 0.9.2
+25 silly fetchPackageMetaData
+25 silly fetchPackageMetaData     at pickVersionFromRegistryDocument (/usr/share/npm/lib/fetch-package-metadata.js:156:16)
+25 silly fetchPackageMetaData     at /usr/share/npm/node_modules/iferr/index.js:13:50
+25 silly fetchPackageMetaData     at /usr/share/npm/lib/utils/pulse-till-done.js:19:8
+25 silly fetchPackageMetaData     at CachingRegistryClient.get_ (/usr/share/npm/lib/cache/caching-client.js:120:16)
+25 silly fetchPackageMetaData     at /usr/share/npm/lib/cache/caching-client.js:87:14
+25 silly fetchPackageMetaData     at /usr/share/npm/node_modules/graceful-fs/graceful-fs.js:76:16
+25 silly fetchPackageMetaData     at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+25 silly fetchPackageMetaData  error for tabris@nightly [Error: No compatible version found: tabris@nightly
+25 silly fetchPackageMetaData Valid install targets:
+25 silly fetchPackageMetaData 1.10.0, 1.9.0, 1.8.0, 1.7.0, 1.6.0, 1.5.0, 1.4.0, 1.3.0, 1.2.0, 1.1.0, 1.0.0, 0.9.4, 0.9.3, 0.9.2
+25 silly fetchPackageMetaData ]
+26 silly rollbackFailedOptional Starting
+27 silly rollbackFailedOptional Finishing
+28 silly runTopLevelLifecycles Starting
+29 silly runTopLevelLifecycles Finishing
+30 silly install printInstalled
+31 verbose stack Error: No compatible version found: tabris@nightly
+31 verbose stack Valid install targets:
+31 verbose stack 1.10.0, 1.9.0, 1.8.0, 1.7.0, 1.6.0, 1.5.0, 1.4.0, 1.3.0, 1.2.0, 1.1.0, 1.0.0, 0.9.4, 0.9.3, 0.9.2
+31 verbose stack
+31 verbose stack     at pickVersionFromRegistryDocument (/usr/share/npm/lib/fetch-package-metadata.js:156:16)
+31 verbose stack     at /usr/share/npm/node_modules/iferr/index.js:13:50
+31 verbose stack     at /usr/share/npm/lib/utils/pulse-till-done.js:19:8
+31 verbose stack     at CachingRegistryClient.get_ (/usr/share/npm/lib/cache/caching-client.js:120:16)
+31 verbose stack     at /usr/share/npm/lib/cache/caching-client.js:87:14
+31 verbose stack     at /usr/share/npm/node_modules/graceful-fs/graceful-fs.js:76:16
+31 verbose stack     at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+32 verbose cwd /home/itee/mobile/radio360
+33 error Linux 4.4.0-53-generic
+34 error argv "/usr/bin/nodejs" "/usr/bin/npm" "install"
+35 error node v4.2.6
+36 error npm  v3.5.2
+37 error No compatible version found: tabris@nightly
+37 error Valid install targets:
+37 error 1.10.0, 1.9.0, 1.8.0, 1.7.0, 1.6.0, 1.5.0, 1.4.0, 1.3.0, 1.2.0, 1.1.0, 1.0.0, 0.9.4, 0.9.3, 0.9.2
+38 error If you need help, you may report this error at:
+38 error     <https://github.com/npm/npm/issues>
+39 verbose exit [ 1, true ]
