@@ -21,7 +21,14 @@ var NEWS_URL='http://www.myradio360.com/api/';
 
 var about_page=aboutPage.createAboutPage(PAGE_MARGIN);
 
-
+FCMPlugin.getToken(
+  function(token){
+    alert(token);
+  },
+  function(err){
+    console.log('error retrieving token: ' + err);
+  }
+)
 //////////////////////////////////////////////////////
 tabris.ui.set("background", "#D71A21");
 
