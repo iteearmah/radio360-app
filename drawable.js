@@ -42,6 +42,10 @@ exports.Menu=function (target,imagepath,drawer,drawablePages,page_margin){
     drawablePages.about.createAboutPage(page_margin).open();
     drawer.close();
   }
+  else if(value.identify=='feedback')
+  {
+    drawer.close();
+  }
   else
   {
 

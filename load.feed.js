@@ -1,4 +1,4 @@
-
+var utils = require('./utils.js');
 exports.getNewsList=function (json_url,image_size,margin,targt_page,collectionView_News,storage_key='news_list',detail_page=''){
   var scrollPosition = 0;
   localStorage.setItem('current_page_'+storage_key,1);
@@ -30,97 +30,47 @@ exports.getNewsList=function (json_url,image_size,margin,targt_page,collectionVi
 
 function fetch_newslist(view,json_url,key)
 {
-   var $ = require("./lib/jquery.js");
-  var items = [];
-  $.ajaxSetup({ cache:false });
-  $.ajax({
-    url: json_url,
-    dataType: 'json',
-    //timeout: 5000,
-    success:  function (data) {
-          localStorage.setItem(key,JSON.stringify(data));
-          load_news(view,data,key);
+     utils.getJSON(json_url).then(function (json) {
+         localStorage.setItem(key,JSON.stringify(json));
+          load_news(view,json,key);
+    });
 
-          /*load_topNews(data,key,topStoryImage,topStoryTitle);*/
-          },error: function(data, errorThrown)
-          {
-             console.log('news not fetched'+errorThrown);
-          }
-  });
 }
 
 
 
 exports.loadNewItems=function(view,json_url,key)
 {
-   var $ = require("./lib/jquery.js");
-  var items = [];
   itemsView = view.get("items");
   //page=parseInt(itemsView[itemsView.length-1].page);
   current_page=localStorage.getItem('current_page_'+key);
   current_page++;
-  console.log('current_page: '+current_page);
+  //console.log('current_page: '+current_page);
   localStorage.setItem('current_page_'+key,current_page);
    json_url=json_url+'&page='+current_page;
-   console.log('news '+json_url);
-  $.ajaxSetup({ cache:false });
-  $.ajax({
-    url: json_url,
-    dataType: 'json',
-    //timeout: 5000,
-    success:  function (data) {
-          localStorage.setItem(key,JSON.stringify(data));
-          view.insert(data.items);
-          //load_news(view,data.items,key);
-          /*load_topNews(data,key,topStoryImage,topStoryTitle);*/
-          },error: function(data, errorThrown)
-          {
-             console.log('news not fetched'+errorThrown);
-          }
-  });
+  // console.log('news '+json_url);
+
+    utils.getJSON(json_url).then(function (json) {
+         localStorage.setItem(key,JSON.stringify(json));
+          view.insert(json.items);
+    });
 
 }
 
 exports.fetch_newslist= function(view,json_url,key)
 {
-   var $ = require("./lib/jquery.js");
-  var items = [];
-  $.ajaxSetup({ cache:false });
-  $.ajax({
-    url: json_url,
-    dataType: 'json',
-    //timeout: 5000,
-    success:  function (data) {
-          localStorage.setItem(key,JSON.stringify(data));
-          load_news(view,data,key);
-
-          /*load_topNews(data,key,topStoryImage,topStoryTitle);*/
-          },error: function(data, errorThrown)
-          {
-             console.log('news not fetched'+errorThrown);
-          }
-  });
+  utils.getJSON(json_url).then(function (json) {
+        localStorage.setItem(key,JSON.stringify(json));
+          load_news(view,json,key);
+    });
 }
 
 exports.fetch_other_newslist= function(view,json_url,key)
 {
-   var $ = require("./lib/jquery.js");
-  var items = [];
-  $.ajaxSetup({ cache:false });
-  $.ajax({
-    url: json_url,
-    dataType: 'json',
-    //timeout: 5000,
-    success:  function (data) {
-          localStorage.setItem(key,JSON.stringify(data));
-          view.insert(data.items);
-
-          /*load_topNews(data,key,topStoryImage,topStoryTitle);*/
-          },error: function(data, errorThrown)
-          {
-             console.log('news not fetched'+errorThrown);
-          }
-  });
+  utils.getJSON(json_url).then(function (json) {
+        localStorage.setItem(key,JSON.stringify(json));
+         view.insert(data.items);
+    });
 }
 
 

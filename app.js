@@ -1,3 +1,5 @@
+var utils = require('./utils.js');
+var catergoryPages = require('./category.js');
 var loadFeed=require("./load.feed.js");
 var videosFeed=require("./videos.feed.js");
 var newsDetails=require("./news-details.js");
@@ -15,13 +17,16 @@ var PAGE_MARGIN = 16;
 var IMAGE_SIZE = 120;
 var MARGIN = 12;
 var MARGIN_LARGE = 24;
-var NEWS_URL='http://www.myradio360.com/api/news';
+var NEWS_URL='http://www.myradio360.com/api/';
 
 var about_page=aboutPage.createAboutPage(PAGE_MARGIN);
 
 
 //////////////////////////////////////////////////////
 tabris.ui.set("background", "#D71A21");
+
+
+
 var drawer = new tabris.Drawer()
   .on("open", function() {
     //console.log("drawer opened");
@@ -29,6 +34,7 @@ var drawer = new tabris.Drawer()
   .on("close", function() {
     //console.log("drawer closed");
   });
+  
 var drawablePages= {about:aboutPage};
 drawable.Menu(drawer,IMAGE_PATH,drawer,drawablePages,PAGE_MARGIN);
 
@@ -36,7 +42,7 @@ var page = new tabris.Page({
   title: 'Radio360',
   topLevel: true
 });
-
+  page.open();
 
 var shareAction = tabris.create("Action", {
     id: "shareaction",
@@ -70,41 +76,19 @@ var createTab = function(title, image) {
 
 
 //googleAnalytics.applyAnalytics();
-admob.initAdmob("ca-app-pub-1774560463484862/2539800032","ca-app-pub-1774560463484862/4016533237");
-admob.cacheInterstitial();// load admob Interstitial
+//admob.initAdmob("ca-app-pub-1774560463484862/7692645632","ca-app-pub-1774560463484862/7553044832");
+//admob.cacheInterstitial();// load admob Interstitial
 
 /*admob.isInterstitialReady(function(isReady){
   if(isReady){
       admob.showInterstitial();
   }
 });*/
-admob.showBanner(admob.BannerSize.BANNER,admob.Position.BOTTOM_CENTER);
+//admob.showBanner(admob.BannerSize.BANNER,admob.Position.BOTTOM_CENTER);
 
-
-function fetch_newslist(view,json_url,key)
-{
-   var $ = require("./lib/jquery.js");
-  var items = [];
-  $.ajaxSetup({ cache:false });
-  $.ajax({
-    url: json_url,
-    dataType: 'json',
-    //timeout: 5000,
-    success:  function (data) {
-          localStorage.setItem(key,JSON.stringify(data));
-          load_news(view,data,key);
-
-          /*load_topNews(data,key,topStoryImage,topStoryTitle);*/
-          },error: function(data, errorThrown)
-          {
-             //console.log('news not fetched'+errorThrown);
-          }
-  });
-}
 
 function loadNewItems(view,json_url,key)
 {
-   var $ = require("./lib/jquery.js");
   var items = [];
   itemsView = view.get("items");
   //page=parseInt(itemsView[itemsView.length-1].page);
@@ -113,33 +97,24 @@ function loadNewItems(view,json_url,key)
   //console.log('current_page: '+current_page);
   localStorage.setItem('current_page_'+key,current_page);
    json_url=json_url+'&page='+current_page;
-   //console.log(json_url);
-  $.ajaxSetup({ cache:false });
-  $.ajax({
-    url: json_url,
-    dataType: 'json',
-    //timeout: 5000,
-    success:  function (data) {
-          localStorage.setItem(key,JSON.stringify(data));
-          view.insert(data.items);
-          //load_news(view,data.items,key);
-          /*load_topNews(data,key,topStoryImage,topStoryTitle);*/
-          },error: function(data, errorThrown)
-          {
-             //console.log('news not fetched'+errorThrown);
-          }
-  });
+
+   utils.getJSON(json_url).then(function (json) {
+       localStorage.setItem(key,JSON.stringify(json));
+          view.insert(json.items);
+    });
+
+
 }
 
 function load_news(view,newsData,key)
 {
   
   newsitems=JSON.parse(localStorage.getItem(key));
-  view.set({
+ /* view.set({
       items: newsitems,
       refreshIndicator: true,
       refreshMessage: ""
-    });
+    });*/
 
   newsitems=newsData.items;
   setTimeout(function() {
@@ -204,6 +179,7 @@ function createItems(firstsection=false,json_url,image_size, margin,targt_page,d
       if(firstsection==true)
       {
           loadFeed.fetch_newslist(collectionView_News,json_url,storage_key);
+          
       }
       else
       {
@@ -263,22 +239,30 @@ var businessTab=createTab('Business');
 // var internationalTab=createTab('International');
 // var technologyTab=createTab('Technology');
 
-createItems(true,pageUrl('news'),IMAGE_SIZE, MARGIN,newsTab,newsDetails,shareAction,'news_list');
-createItems(false,pageUrl('politics'),IMAGE_SIZE, MARGIN,politicsTab,newsDetails,shareAction,'politics_list');
-createItems(false,pageUrl('sports'),IMAGE_SIZE, MARGIN,sportsTab,newsDetails,shareAction,'sports_list');
-createItems(false,pageUrl('business'),IMAGE_SIZE, MARGIN,businessTab,newsDetails,shareAction,'business_list');
+
 //createItems(false,pageUrl('entertainment'),IMAGE_SIZE, MARGIN,entertainmentTab,newsDetails,shareAction,'entertainment_list');
 // createItems(false,pageUrl('world'),IMAGE_SIZE, MARGIN,internationalTab,newsDetails,shareAction,'international_list');
 // createItems(false,pageUrl('technology'),IMAGE_SIZE, MARGIN,technologyTab,newsDetails,shareAction,'technology_list');
-
- setTimeout(function() {
-  admob.cacheInterstitial();// load admob Interstitial
+tabFolder.on("select", function (widget, tab) {
+  //  admob.showInterstitial();
+  if(tab.get("title")=='Fan Videos')
+  {
+    //createItems(pageUrl('videos'),IMAGE_SIZE, MARGIN,fanVideoTab,'videos_list');
+  }
+});
+/* setTimeout(function() {
+ // admob.cacheInterstitial();// load admob Interstitial
   //admob.isInterstitialReady(function(isReady){
-    admob.showInterstitial();
+    //admob.showInterstitial();
   //});
-   
-  }, 20000);
 
+
+
+  }, 20000);*/
+  //createItems(true,pageUrl('news'),IMAGE_SIZE, MARGIN,newsTab,newsDetails,shareAction,'news_list');
+createItems(false,pageUrl('politics'),IMAGE_SIZE, MARGIN,politicsTab,newsDetails,shareAction,'politics_list');
+createItems(false,pageUrl('sports'),IMAGE_SIZE, MARGIN,sportsTab,newsDetails,shareAction,'sports_list');
+createItems(false,pageUrl('business'),IMAGE_SIZE, MARGIN,businessTab,newsDetails,shareAction,'business_list');
 
 
 //newsCollectionView=createCollectionView(IMAGE_SIZE, MARGIN,newsTab,'news_list');
@@ -291,11 +275,4 @@ createItems(false,pageUrl('business'),IMAGE_SIZE, MARGIN,businessTab,newsDetails
 //loadFeed.fetch_other_newslist(videosCollectionView,pageUrl('videos'),'videos_list');
 
 /*loadFeed.getNewsList(pageUrl('videos'),IMAGE_SIZE,MARGIN,fanVideoTab,createCollectionView(IMAGE_SIZE, MARGIN,fanVideoTab,'videos_list'),'videos_list');*/
-tabFolder.on("select", function (widget, tab) {
-  //  admob.showInterstitial();
-  if(tab.get("title")=='Fan Videos')
-  {
-    //createItems(pageUrl('videos'),IMAGE_SIZE, MARGIN,fanVideoTab,'videos_list');
-  }
-});
-page.open();
+

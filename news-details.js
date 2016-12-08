@@ -141,14 +141,8 @@ function fetch_newsDetails(newsItem,newsArticle,activityIndicator,contentComposi
 {
 	activityIndicator.set("visible", true);
 	var article='';
-	var $ = require("./lib/jquery.js");
-  $.ajaxSetup({ cache:false });
-  $.ajax({
-    url: 'http://www.myradio360.com/api/article/'+newsItem.id,
-    dataType: 'json',
-    //timeout: 5000,
-    success:  function (data) {
-         
+   utils.getJSON(json_url).then(function (json) {
+       
          if(newsItem.category=='videos')
          {
          	media=testUrlForMedia(data.article);
@@ -183,11 +177,8 @@ function fetch_newsDetails(newsItem,newsArticle,activityIndicator,contentComposi
          	newsArticle.set("text",articleArticle);
          }
          activityIndicator.set("visible", false);
-    },error: function(data, errorThrown)
-    {
-       console.log('news '+newsItem.id+'not fetched'+errorThrown);
-    }
-  });
+    });
+
 }
 
 

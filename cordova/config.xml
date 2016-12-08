@@ -10,6 +10,7 @@
   <content src="package.json" />
   <platform name="android">
         <icon src="logo.png" />
+      <splash src="splashscreen.png" />
     </platform>
      <plugin name="cordova-plugin-dialogs" />
     <plugin name="cordova-plugin-inappbrowser" />
@@ -21,4 +22,8 @@
     <plugin name="https://github.com/apache/cordova-plugin-splashscreen.git" />
     <plugin name="https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
     <plugin name="https://github.com/Glitchbone/CordovaYoutubeVideoPlayer.git" />
+    <platform name="android">
+  <splash src="splashscreen.png" />
+</platform>
+
 </widget>
