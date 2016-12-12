@@ -21,14 +21,8 @@ var NEWS_URL='http://www.myradio360.com/api/';
 
 var about_page=aboutPage.createAboutPage(PAGE_MARGIN);
 
-FCMPlugin.getToken(
-  function(token){
-    alert(token);
-  },
-  function(err){
-    console.log('error retrieving token: ' + err);
-  }
-)
+
+
 //////////////////////////////////////////////////////
 tabris.ui.set("background", "#D71A21");
 
@@ -73,6 +67,7 @@ var createTab = function(title, image) {
   var tabObj=tabris.create("Tab", {
   /*image: {src: image},*/
     title:title,
+    tabMode:'scrollable',
     background: "#fff"
   }).appendTo(tabFolder);
   return tabObj;
@@ -241,6 +236,7 @@ function load_topNews(newsData,key,topStoryImage,topStoryTitle)
 var newsTab=createTab('News');
 var politicsTab=createTab('Politics');
 var sportsTab=createTab('Sports');
+var businessTab=createTab('Business');
 var businessTab=createTab('Business');
 //var entertainmentTab=createTab('Entertainment');
 // var internationalTab=createTab('International');

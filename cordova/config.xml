@@ -22,9 +22,9 @@
     <plugin name="https://github.com/katzer/cordova-plugin-background-mode.git" />
     <plugin name="https://github.com/apache/cordova-plugin-splashscreen.git" />
     <plugin name="https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
-    <plugin name="https://github.com/Glitchbone/CordovaYoutubeVideoPlayer.git" />
+    <plugin name="https://github.com/Glitchbone/CordovaYoutubeVideoPlayer.git" />h
     <plugin name="https://github.com/katzer/cordova-plugin-badge.git" />
-    <plugin name="cordova-plugin-firebase" />
+    <plugin name="ttps://github.com/katzer/cordova-plugin-local-notifications.git" />
 <access origin="*" />
   <allow-intent href="http://*/*" />
 </widget>
